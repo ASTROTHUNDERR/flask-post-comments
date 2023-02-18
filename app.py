@@ -12,7 +12,7 @@ def create_post():
         content = request.form.get('content')
         db.execute('INSERT INTO posts (author, content) VALUES (?, ?)', author, content)
 
-    return render_template('post.html')
+    return render_template('index.html')
 
 
 
