@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="post-div">
+        {% for post in posts %}
+            <div class="post-content">
+                <p>Author: {{ post.author }}</p>
+                <p>- {{ post.content }}</p>
+                <button onclick="toggleTextArea('{{ post.id }}')">Comment</button>
+                <form action="" method="post">
+                    <textarea id="myTextArea{{ post.id }}" style="display:none" name="post-comment"></textarea>
+                    <button id="submit-button{{ post.id }}" type="submit" name="post_id" value="{{ post.id }}" style="display:none">Submit</button>
+                </form>
+                {% for comment in comments %}
+                    {% if comment.post_author == post.author %}
+                        <p> {{ comment.content }} </p>
+                    {% endif %}      
+                {% endfor %}
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="/static/js/app.js"></script>
+{% endblock %}
